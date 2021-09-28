@@ -3,42 +3,40 @@ class Hotel {
     this.customers = customers;
     this.rooms = rooms;
     this.bookings = bookings;
+    this.customerBookings = [];
     this.roomDetails = [];
   };
 
-  calculateSpending() {
+  getCustomerDetails(userID) {
+    let customerDetails = this.customers.find(customer => customer.id === userID);
+    return customerDetails;
+  }
+
+  getCustomerBookings(userID) {
+    this.customerBookings = this.bookings.filter(booking => booking.userID === userID);
+    return this.customerBookings;
+  }
+
+  calculateSpending(userID) {
     let total = this.rooms.reduce((total, room) => {
+
       total += room.costPerNight;
       return total;
     }, 0);
     return total;
   };
 
-  sortBookingsAscending() {
-    this.bookings.sort((a, b) => {
-      return a.date - b.date;
-    });
-    return this.bookings;
+  getCurrentBooking(customer, currentDate) {
+    return currentBooking = customer.bookings.find(booking => booking.date === currentDate);
   };
 
-  sortBookingsDescending() {
-    this.bookings.sort((a, b) => {
-      return b.date - a.date;
-    });
-    return this.bookings;
+  getFutureBookings(customer, currentDate) {
+    return futureBookings = customer.bookings.filter(booking => booking.date > currentDate);
   };
 
-  getCurrentBooking(customer) {
-
-  }
-
-  getFutureBookings(customer) {
-
-  }
-
-  getPastBookings(customer) {
-
-  }
+  getPastBookings(customer, currentDate) {
+    return pastBookings = customer.bookings.filter(booking => booking.date < currentDate);
+  };
 };
 
 export default Hotel;

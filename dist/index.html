@@ -13,8 +13,12 @@
   <main>
     <section class="login" id="login">
       <h2 class="login-request">Please log in</h2>
-      <input type="text" class="login-input" id="usernameInput" />
-      <input type="text" class="login-input" id="passwordInput" />
+      <form>
+        <label for="usernameInput">Username</label>
+        <input type="text" class="login-input" id="usernameInput" />
+        <label for="passwordInput">Password</label>
+        <input type="text" class="login-input" id="passwordInput" />
+        <button type="submit" name="submit-login" class="submit-login" id="submitLogin" value="login">Login to the Overlook</button>
     </section>
     <section class="dashboard hidden" id="dashboard">
       <article class="customer-dashboard">
@@ -32,63 +36,67 @@
     <section class="customer-search hidden" id="customerSearch">
       <article class="date-selection" id="dateSelection">
         <h2 class="customer-greeting">When would you like to stay with us?</h2>
-        <label for="dateYear">You may book up to 5 years in advance.</label>
-        <select name="date-year" id="dateYear">
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-        </select>
-        <label for="dateMonth">Please pick a month.</label>
-        <select name="date-month" id="dateMonth">
-          <option value="01">January</option>
-          <option value="02">February</option>
-          <option value="03">March</option>
-          <option value="04">April</option>
-          <option value="05">May</option>
-          <option value="06">June</option>
-          <option value="07">July</option>
-          <option value="08">August</option>
-          <option value="09">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select>
-        <label for="dateYear">Please pick a day of the month.</label>
-        <select name="date-day" id="dateDay">
-          <option value="01">01</option>
-          <option value="02">02</option>
-          <option value="03">03</option>
-          <option value="04">04</option>
-          <option value="05">05</option>
-          <option value="06">06</option>
-          <option value="07">07</option>
-          <option value="08">08</option>
-          <option value="09">09</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="29">30</option>
-          <option value="29">31</option>
-        </select>
+        <form>
+          <label for="dateYear">You may book up to 5 years in advance.</label>
+          <select name="date-year" id="dateYear">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+          </select>
+          <label for="dateMonth">Please pick a month.</label>
+          <select name="date-month" id="dateMonth">
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <label for="dateYear">Please pick a day of the month.</label>
+          <select name="date-day" id="dateDay">
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
+          <button type="submit" name="submit-search" class="submit-search" id="submitSearch" value="search">Login to the Overlook</button>
+        </form>
+
         <button class="customer-greeting hidden" id="pickNewDate">Pick a new date?</button>
         <button class="customer-greeting hidden" id="bookRoom">Book Room</button>
         <button class="customer-greeting hidden" id="checkout">Money Please</button>
