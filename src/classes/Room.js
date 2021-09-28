@@ -8,7 +8,6 @@ class Room {
     this.bedSize = roomsData.bedSize;
     this.numBeds = roomsData.numBeds;
     this.costPerNight = roomsData.costPerNight;
-    this.isAvailable = true;
   }
 }
 

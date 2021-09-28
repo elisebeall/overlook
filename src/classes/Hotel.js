@@ -1,6 +1,6 @@
 class Hotel {
-  constructor(customer, rooms, bookings) {
-    this.customer = customer;
+  constructor(customers, rooms, bookings) {
+    this.customers = customers;
     this.rooms = rooms;
     this.bookings = bookings;
   };
@@ -40,7 +40,7 @@ class Hotel {
   }
 };
 
-export default Dashboard;
+export default Hotel;
 
 
 //Once the user logs in, an instance of the user class will be created using the
