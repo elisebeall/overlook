@@ -7,7 +7,11 @@ class Booking {
     this.date = bookingsData.date;
     this.roomNumber = bookingsData.roomNumber;
     this.roomServiceCharges = [];
-  }
-}
+  };
+
+  createNewBooking(id, userID, date, roomNumber) {
+
+  };
+};
 
 export default Booking;

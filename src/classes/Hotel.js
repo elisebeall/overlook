@@ -3,6 +3,7 @@ class Hotel {
     this.customers = customers;
     this.rooms = rooms;
     this.bookings = bookings;
+    this.roomDetails = [];
   };
 
   calculateSpending() {

@@ -27,8 +27,8 @@ const importData = () => {
 
 const buildDashboard = (data) => {
   hotel = new Hotel(data[0].rooms, data[1].customers, data[2].bookings);
-  customer = new Customer(customersData[0]);
-  currentBooking = new Booking(bookingsData[0]);
+  customer = new Customer();
+  currentBooking = new Booking();
 };
 
 const displayDashboard = () => {
@@ -37,4 +37,11 @@ const displayDashboard = () => {
   domUpdates.displayCurrentBooking(customer);
   domUpdates.displayPastBookings(customer);
   domUpdates.displayFutureBookings(customer);
+};
+
+const searchRooms = (date, roomType) => {
+  const year = dateYear.value;
+  const month = dateMonth.value;
+  const day = dateDay.value;
+  domUpdates.displaySearchResults(year, month, day);
 };

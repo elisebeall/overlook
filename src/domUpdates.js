@@ -4,8 +4,8 @@ export const customerGreeting = document.getElementById('customerGreeting');
 export const totalSpendings = document.getElementById('totalSpendings');
 export const customerBookings = document.getElementById('customerBookings');
 export const customerSearch = document.getElementById('customerSearch');
-export const pickDate = document.getElementById('pickDate');
-export const pickNewDate = document.getElementById('pickNewDate');
+// export const pickDate = document.getElementById('pickDate');
+// export const pickNewDate = document.getElementById('pickNewDate');
 export const bookRoom = document.getElementById('bookRoom');
 export const checkout = document.getElementById('checkout');
 export const dateResults = document.getElementById('dateResults');
@@ -17,6 +17,19 @@ export const resSuite = document.getElementById('resSuite');
 
 
 const domUpdates = {
+  logInCustomer(event) {
+    event.preventDefault();
+    const username = usernameInput.value;
+    const password = passwordInput.value;
+
+    if ((username.length < 9 || username.length > 10) || password.length !== 12) {
+      this.show(loginError);
+    } else {
+      const customerID = getUserDetails(username);
+      const customerDetails = hotel.getCustomerDetails(customerID);
+    }
+  },
+
   welcomeCustomer(customer) {
     customerGreeting.innerText = '';
     customerGreeting.innerText = `Welcome ${customer.name}`;
@@ -25,6 +38,9 @@ const domUpdates = {
   displaySpendings(customer) {
     let spent = hotel.calculateSpending(customer);
     totalSpendings.innerText = `$${spent}`;
+  },
+
+  displayAllRooms(rooms) {
   },
 
   displayCurrentBooking(hotel, customer) {
@@ -49,13 +65,17 @@ const domUpdates = {
     });
   },
 
+  displaySearchResults(year, month, day, hotel) {
+
+  },
+
   confirmBooking() {
     checkout.innerText = '';
     checkout.innerText += 'This is where the Overlook takes your money.';
   },
 
   catchError(error) {
-    
+
   },
 
   show(element) {

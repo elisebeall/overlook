@@ -46,4 +46,9 @@ describe('Booking', () => {
     assert.deepEqual(booking1.roomServiceCharges, []);
     assert.deepEqual(booking2.roomServiceCharges, []);
   });
+
+  it('should be able to create a new booking', () => {
+
+    assert.equal();
+  });
 });
