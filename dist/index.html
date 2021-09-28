@@ -4,13 +4,49 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Overlook</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  <header>
+    <h1>Welcome to the Overlook</h1>
+  </header>
+  <main>
+    <section class="login" id="login">
+      <h2 class="login-request">Please log in</h2>
+      <input type="text" class="login-input" id="usernameInput" />
+      <input type="text" class="login-input" id="passwordInput" />
+    </section>
+    <section class="dashboard hidden" id="dashboard">
+      <article class="customer-dashboard">
+        <h2 class="customer-greeting" id="customerGreeting">Welcome</h2>
+        <h3 class="total-spendings" id="totalSpendings"></h3>
+        <h3 class="thank-you-message">Thank you for your continued support.</h3>
+      </article>
+      <article class="customer-bookings" id="customerBookings">
+        <div class="grid-container" id="gridContainer">
+          <!-- SLIDESHOW OF BOOKINGS -->
+        </div>
+      </article>
+    </section>
+    <section class="customer-search hidden" id="customerSearch">
+      <article class="date-selection" id="dateSelection">
+        <h2 class="customer-greeting" id="pickDate">When would you like to stay with us?</h2>
+        <h2 class="customer-greeting hidden" id="pickNewDate">Pick a new date?</h2>
+        <h2 class="customer-greeting hidden" id="bookRoom">Book Room</h2>
+        <h2 class="customer-greeting hidden" id="checkout">Money Please</h2>     
+      </article>
+      <article class="date-results" id="dateResults">
+        <h2 class="customer-greeting">Here are the available rooms for <em id="dateSearched"></em></h2>
+        <button class="filter-results" id="singleRoom">Single Room</button>
+        <button class="filter-results" id="juniorSuite">Junior Suite</button>
+        <button class="filter-results" id="suite">Suite</button>
+        <button class="filter-results" id="resSuite">Residential Suite</button>
+        <div class="grid-container" id="gridContainer">
+          <!-- GRID OF RESULTS -->
+        </div>
+      </article>
+    </section>
+  </main>
   <script src="bundle.js"></script>
-
 </body>
 </html>

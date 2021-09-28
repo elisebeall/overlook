@@ -1,4 +1,4 @@
-import bookingsData from '../src/data/bookings.js';
+import { bookingsData } from '../data/bookings.js';
 
 class Booking {
   constructor(bookingsData) {
@@ -6,9 +6,8 @@ class Booking {
     this.userID = bookingsData.userID;
     this.date = bookingsData.date;
     this.roomNumber = bookingsData.roomNumber;
-    this.roomServiceCharges = bookingsData.roomServiceCharges;
+    this.roomServiceCharges = [];
   }
-  
 }
 
 export default Booking;
