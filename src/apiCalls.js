@@ -7,23 +7,23 @@ const endpoints = {
   photos: ''
 };
 
-export const fetchData = (data) => {
-  return fetch(`endpoints.${data}`)
+export const fetchRooms = () => {
+  return fetch(endpoints.rooms)
     .then(response => response.json())
     .catch(error => domUpdates.catchError(error))
 };
 
-// export const fetchBookings = () => {
-//   return fetch(endpoints.bookings)
-//     .then(response => response.json())
-//     .catch(error => domUpdates.catchError(error))
-// };
-//
-// export const fetchCustomers = () => {
-//   return fetch(endpoints.customers)
-//     .then(response => response.json())
-//     .catch(error => domUpdates.catchError(error))
-// };
+export const fetchBookings = () => {
+  return fetch(endpoints.bookings)
+    .then(response => response.json())
+    .catch(error => domUpdates.catchError(error))
+};
+
+export const fetchCustomers = () => {
+  return fetch(endpoints.customers)
+    .then(response => response.json())
+    .catch(error => domUpdates.catchError(error))
+};
 
 export const fetchCustomer = (id) => {
   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
@@ -33,7 +33,7 @@ export const fetchCustomer = (id) => {
 };
 
 export const fetchHotelData = () => {
-  Promise.all([fetchData('rooms'), fetchData('customers'), fetchData('bookings')])
+  Promise.all([fetchRooms(), fetchCustomers(), fetchBookings()])
     .then(data => buildDashboard(data))
     .then(() => loadPage())
 };
@@ -49,7 +49,7 @@ export const bookRoom = (customer, date, room) => {
       date: date,
       roomNumber: room
     })
-  });
+  })
     .then(managePostError)
     .then(() => domUpdates.confirmBooking())
     .then(() => fetchHotelData())

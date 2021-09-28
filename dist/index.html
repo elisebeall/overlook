@@ -12,25 +12,25 @@
   </header>
   <main>
     <section class="login" id="login">
-      <h2 class="login-request">Please log in</h2>
+      <h2 class="login-request" id="loginRequest">Please log in</h2>
+      <h2 class="login-request hidden" id="loginError">Incorrect Username or Password</h2>
       <form>
         <label for="usernameInput">Username</label>
         <input type="text" class="login-input" id="usernameInput" />
         <label for="passwordInput">Password</label>
         <input type="text" class="login-input" id="passwordInput" />
         <button type="submit" name="submit-login" class="submit-login" id="submitLogin" value="login">Login to the Overlook</button>
+      </form>
     </section>
     <section class="dashboard hidden" id="dashboard">
       <article class="customer-dashboard">
         <h2 class="customer-greeting" id="customerGreeting">Welcome</h2>
         <h3 class="total-spendings" id="totalSpendings"></h3>
         <h3 class="thank-you-message">Thank you for your continued support.</h3>
-        <button class="room-search" id="roomSearch">Room Search</button>
+        <button class="room-search" id="roomSearch">New Booking</button>
       </article>
       <article class="customer-bookings" id="customerBookings">
-        <div class="grid-container" id="gridContainer">
-          <!-- SLIDESHOW OF CUST BOOKINGS -->
-        </div>
+
       </article>
     </section>
     <section class="customer-search hidden" id="customerSearch">
@@ -94,10 +94,8 @@
             <option value="30">30</option>
             <option value="31">31</option>
           </select>
-          <button type="submit" name="submit-search" class="submit-search" id="submitSearch" value="search">Login to the Overlook</button>
+          <button type="submit" name="submit-search" class="submit-search" id="submitSearch" value="search">Search Available Rooms</button>
         </form>
-
-        <button class="customer-greeting hidden" id="pickNewDate">Pick a new date?</button>
         <button class="customer-greeting hidden" id="bookRoom">Book Room</button>
         <button class="customer-greeting hidden" id="checkout">Money Please</button>
       </article>
@@ -108,7 +106,6 @@
         <button class="filter-results" id="suite">Suite</button>
         <button class="filter-results" id="resSuite">Residential Suite</button>
         <div class="grid-container" id="gridContainer">
-          <!-- GRID OF RESULTS -->
         </div>
       </article>
     </section>

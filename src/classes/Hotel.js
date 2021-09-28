@@ -1,5 +1,5 @@
 class Hotel {
-  constructor(customers, rooms, bookings) {
+  constructor(rooms, customers, bookings) {
     this.customers = customers;
     this.rooms = rooms;
     this.bookings = bookings;
@@ -7,35 +7,43 @@ class Hotel {
     this.roomDetails = [];
   };
 
-  getCustomerDetails(userID) {
-    let customerDetails = this.customers.find(customer => customer.id === userID);
-    return customerDetails;
-  }
+  getCustomerProfile(userID) {
+    let customerProfile = this.customers.find(customer => userID === customer.id);
+    return customerProfile;
+  };
 
-  getCustomerBookings(userID) {
-    this.customerBookings = this.bookings.filter(booking => booking.userID === userID);
+  getCustomerBookings(customer) {
+    this.bookings.forEach(booking => {
+      if (booking.userID === customer.id) {
+        this.customerBookings.push(booking);
+      }
+    });
     return this.customerBookings;
-  }
+  };
 
-  calculateSpending(userID) {
-    let total = this.rooms.reduce((total, room) => {
-
-      total += room.costPerNight;
-      return total;
+  calculateSpending(customer) {
+    let total = this.customerBookings.reduce((acc, booking) => {
+      this.rooms.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          acc += room.costPerNight;
+        };
+      });
+      return acc;
     }, 0);
     return total;
   };
 
-  getCurrentBooking(customer, currentDate) {
-    return currentBooking = customer.bookings.find(booking => booking.date === currentDate);
-  };
+  searchBookings(date) {
+    let bookedRoomsByNumber = this.bookings.filter(booking => booking)
+    let availableRooms = this.bookings.filter(booking => booking.date !== date);
 
-  getFutureBookings(customer, currentDate) {
-    return futureBookings = customer.bookings.filter(booking => booking.date > currentDate);
-  };
 
-  getPastBookings(customer, currentDate) {
-    return pastBookings = customer.bookings.filter(booking => booking.date < currentDate);
+    console.log('availableRooms',availableRooms)
+    //return this.roomDetails;
+  }
+
+  postNewBooking() {
+
   };
 };
 

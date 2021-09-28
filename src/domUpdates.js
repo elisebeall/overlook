@@ -1,6 +1,8 @@
 export const usernameInput = document.getElementById('usernameInput');
 export const passwordInput = document.getElementById('passwordInput');
 export const submitLogin = document.getElementById('submitLogin');
+export const loginRequest = document.getElementById('loginRequest');
+export const loginError = document.getElementById('loginError');
 
 export const customerGreeting = document.getElementById('customerGreeting');
 export const totalSpendings = document.getElementById('totalSpendings');
@@ -12,19 +14,22 @@ export const bookRoom = document.getElementById('bookRoom');
 export const checkout = document.getElementById('checkout');
 export const dateResults = document.getElementById('dateResults');
 export const dateSearched = document.getElementById('dateSearched');
+
 export const singleRoom = document.getElementById('singleRoom');
 export const juniorSuite = document.getElementById('juniorSuite');
 export const suite = document.getElementById('suite');
 export const resSuite = document.getElementById('resSuite');
+export const gridContainer = document.getElementById('gridContainer');
 
-const domUpdates = {
+export const domUpdates = {
 
   welcomeCustomer(customer) {
     customerGreeting.innerText = '';
     customerGreeting.innerText = `Welcome ${customer.name}!`;
   },
 
-  displaySpendings(customer) {
+  displaySpendings(hotel, customer) {
+    console.log(customer)
     let spent = hotel.calculateSpending(customer);
     totalSpendings.innerText = `$${spent}`;
   },
@@ -32,30 +37,24 @@ const domUpdates = {
   // displayAllRooms(rooms) {
   // },
 
-  displayCurrentBooking(hotel, customer) {
-    let currentCustBooking = hotel.getCurrentBooking(customer, currentDate);
+  displayCustomerBookings(hotel, customer) {
+    event.preventDefault();
+    let custBookings = hotel.getCustomerBookings(customer);
     customerBookings.innerHTML = '';
-    currentBooking.innerHTML += `<p>We have you booked for today, ${currentCustBooking.date}, in room number ${currentCustBooking.roomNumber}</p>`;
-  },
-
-  displayPastBookings(hotel, customer) {
-    let pastCustBookings = hotel.getPastBookings(customer, currentDate);
-    customerBookings.innerHTML = '';
-    pastCustBookings.forEach(booking => {
+    custBookings.forEach(booking => {
       customerBookings.innerHTML += `<p>We have you booked for: ${booking.date}, in room number ${booking.roomNumber}.</p>`;
     });
   },
 
-  displayFutureBookings(hotel, customer) {
-    let futureCustBookings = hotel.getFutureBookings(customer, currentDate);
-    customerBookings.innerHTML = '';
-    futureCustBookings.forEach(booking => {
-      customerBookings.innerHTML += `<p>You stay with us on: ${booking.date}, in room number ${booking.roomNumber}.</p>`;
+  displaySearchResults(year, month, day, hotel) {
+    event.preventDefault();
+    let date = `${year}/${month}/${day}`;
+    dateSearched.innerText = `${date}`;
+    let roomDetails = hotel.searchBookings(date);
+    gridContainer.innerHTML = '';
+    roomDetails.forEach(room => {
+      gridContainer.innerHTML += `Room #${room.number} is a ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s). It costs $${room.costPerNight}.<br>Has bidet? ${room.bidet}`;
     });
-  },
-
-  displaySearchResults(year, month, day) {
-    dateSearched.innerText = `${year}/${month}/${day}`;
   },
 
   confirmBooking() {

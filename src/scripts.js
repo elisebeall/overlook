@@ -1,59 +1,45 @@
 import './css/base.scss';
-import roomsData from '../data/roomsData';
-import bookingsData from '../data/bookingsData';
-import customersData from '../data/customersData';
+// import roomsData from '../data/roomsData';
+// import bookingsData from '../data/bookingsData';
+// import customersData from '../data/customersData';
 import domUpdates from './domUpdates';
-import { fetchData, fetchCustomer, fetchHotelData } from '.apiCalls';
-import Customer from '../classes/Customer';
-import Booking from '../classes/Booking';
-import Room from '../classes/Room';
-import Hotel from '../classes/Hotel';
+import { fetchRooms, fetchBookings, fetchCustomers } from './apiCalls';
+import Customer from './classes/Customer';
+import Booking from './classes/Booking';
+import Room from './classes/Room';
+import Hotel from './classes/Hotel';
 
 //need link to it in the index.html
 import './images/turing-logo.png';
 
 let dayjs = require('dayjs');
 let currentDate = dayjs(Date.now()).format('YYYY-MM-DD');
-let hotel, customer, booking, room, roomsData, bookingsData, customersData;
+let hotel, customers, bookings, rooms;
+let currentCustomer;
 
-const {
-  usernameInput,
-  passwordInput,
-  submitLogin,
-  customerGreeting,
-  totalSpendings,
-  customerBookings,
-  customerSearch,
-  bookRoom,
-  checkout,
-  dateResults,
-  dateSearched,
-  singleRoom,
-  juniorSuite,
-  suite,
-  resSuite
-} = domUpdates;
-
+window.addEventListener('load', loadPage);
 submitLogin.addEventListener('click', logInCustomer);
+submitSearch.addEventListener('click', searchRooms);
+singleRoom.addEventListener('click', filterSingleRoom);
+juniorSuite.addEventListener('click', filterJuniorSuite);
+suite.addEventListener('click', filterSuite);
+resSuite.addEventListener('click', filterResSuite);
+bookRoom.addEventListener('click', domUpdates.confirmBooking());
 
-
-
-const loadPage = () = {
+function loadPage() {
   importData();
 };
 
-const importData = () => {
-  Promise.all([fetchData(rooms), fetchData(customers), fetchData(bookings)])]
+function importData() {
+  Promise.all([fetchRooms(), fetchCustomers(), fetchBookings()])
     .then(data => buildHotel(data))
 };
 
-const buildHotel = (data) => {
+function buildHotel(data) {
   hotel = new Hotel(data[0].rooms, data[1].customers, data[2].bookings);
-  customer = new Customer();
-  currentBooking = new Booking();
 };
 
-const logInCustomer = (event) => {
+function logInCustomer(event) {
   event.preventDefault();
   const username = usernameInput.value;
   const password = passwordInput.value;
@@ -62,26 +48,42 @@ const logInCustomer = (event) => {
     domUpdates.show(loginError);
   } else {
     const customerID = getIdFromUsername(username);
-    const customerDetails = hotel.getCustomerDetails(customerID);
-  }
-  dislayDashboard(customerDetails);
+    const customerProfile = hotel.getCustomerProfile(customerID);
+    currentCustomer = new Customer(customerProfile);
+    displayDashboard(currentCustomer);
+  };
 };
 
-const getIdFromUsername = (username) => {
-  
+function getIdFromUsername(username) {
+  let idFromUsername = parseInt(username.replace(/\D/g, ""));
+  return idFromUsername;
 };
 
-const displayDashboard = (customer) => {
+function displayDashboard(customer) {
   domUpdates.welcomeCustomer(customer);
-  domUpdates.displaySpendings(customer);
-  domUpdates.displayCurrentBooking(hotel, customer, currentDate);
-  domUpdates.displayPastBookings(hotel, customer, currentDate);
-  domUpdates.displayFutureBookings(hotel, customer, currentDate);
+  domUpdates.displaySpendings(hotel, customer);
+  domUpdates.displayCustomerBookings(hotel, customer);
 };
 
-const searchRooms = (date, roomType) => {
+function searchRooms() {
   const year = dateYear.value;
   const month = dateMonth.value;
   const day = dateDay.value;
-  domUpdates.displaySearchResults(year, month, day);
+  domUpdates.displaySearchResults(year, month, day, hotel);
+};
+
+function filterSingleRoom() {
+
+};
+
+function filterJuniorSuite() {
+
+};
+
+function filterSuite() {
+
+};
+
+function filterResSuite() {
+
 };
