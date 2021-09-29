@@ -23,6 +23,8 @@ juniorSuite.addEventListener('click', filterRoom);
 suite.addEventListener('click', filterRoom);
 resSuite.addEventListener('click', filterRoom);
 searchResults.addEventListener('click', addBooking);
+checkout.addEventListener('click', displaySearchPage);
+confirmation.addEventListener('click', displaySearchPage);
 
 function loadPage() {
   importData();
@@ -33,7 +35,7 @@ function importData() {
     .then(data => buildHotel(data))
 };
 
-function buildHotel(data) {
+export const buildHotel = (data) => {
   hotel = new Hotel(data[0].rooms, data[1].customers, data[2].bookings);
 };
 
@@ -43,15 +45,17 @@ function logInCustomer(event) {
   const username = usernameInput.value;
   const password = passwordInput.value;
 
-  if ((username.length < 9 || username.length > 10) || password !== 'overlook2021') {
+  if ((username.length < 9 || username.length > 10) || password.length !== 12) {
     domUpdates.show(loginError);
   } else {
-    domUpdates.hide(login);
-    domUpdates.show(dashboard);
     const customerID = getIdFromUsername(username);
     const customerProfile = hotel.getCustomerProfile(customerID);
     currentCustomer = new Customer(customerProfile);
-    displayDashboard(currentCustomer);
+    if (currentCustomer.password === password) {
+      domUpdates.hide(login);
+      domUpdates.show(dashboard);
+      displayDashboard(currentCustomer);
+    }
   };
 };
 
@@ -108,6 +112,7 @@ function addBooking() {
   if (event.target.id === 'bookRoom') {
     let currentRoomNum = parseInt(event.target.parentNode.id);
     bookRoom(currentCustomer.id, `${year}/${month}/${day}`, currentRoomNum);
+    domUpdates.displayBookingConfirmation();
   } else {
     domUpdates.displaySearchResults();
   };

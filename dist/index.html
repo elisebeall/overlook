@@ -12,13 +12,13 @@
   </header>
   <main>
     <section class="login" id="login">
-      <h2 class="login-request" id="loginRequest">Please log in</h2>
-      <h2 class="login-request hidden" id="loginError">Incorrect Username or Password</h2>
-      <form>
+      <h2 class="login login-request" id="loginRequest">Please log in</h2>
+      <h2 class="login login-request hidden" id="loginError">Incorrect Username or Password</h2>
+      <form class="login">
         <label for="usernameInput">Username</label>
-        <input type="text" class="login-input" id="usernameInput" />
+        <input type="text" class="login login-input" id="usernameInput" />
         <label for="passwordInput">Password</label>
-        <input type="text" class="login-input" id="passwordInput" />
+        <input type="text" class="login login-input" id="passwordInput" />
         <button type="submit" name="submit-login" class="submit-login" id="submitLogin" value="login">Login to the Overlook</button>
       </form>
     </section>
@@ -107,6 +107,8 @@
         <article class="search-results-box" id="searchResults">
           <!-- All of the customer's search results populate here -->
         </article>
+      </article>
+      <article class="confirmation" id="confirmation">
         <button class="customer-greeting hidden" id="checkout">Money Please</button>
       </article>
     </section>

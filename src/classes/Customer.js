@@ -4,7 +4,8 @@ class Customer {
   constructor(customersData) {
     this.id = customersData.id;
     this.name = customersData.name;
-    this.spent = 0;
+    this.username = `customer${this.id}`;
+    this.password = 'overlook2021';
   }
 }
 

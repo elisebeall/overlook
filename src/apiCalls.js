@@ -1,5 +1,5 @@
 import { domUpdates } from './domUpdates';
-import { confirmBooking } from './scripts.js';
+import { buildHotel, confirmBooking } from './scripts.js'
 
 const endpoints = {
   rooms: 'http://localhost:3001/api/v1/rooms',
@@ -35,8 +35,7 @@ export const fetchCustomers = () => {
 
 export const fetchHotelData = () => {
   Promise.all([fetchRooms(), fetchCustomers(), fetchBookings()])
-    .then(data => buildDashboard(data))
-    .then(() => loadPage())
+    .then(data => buildHotel(data))
 };
 
 export const bookRoom = (customer, date, room) => {
@@ -53,7 +52,7 @@ export const bookRoom = (customer, date, room) => {
   })
     //.then(managePostError)
     .then(response => confirmBooking())
-    //.then(customer => fetchHotelData())
+    .then(customer => fetchHotelData())
     .catch(error => domUpdates.catchError(error))
 };
 

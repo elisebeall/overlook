@@ -2,9 +2,8 @@
 @import '_variables';
 
 * {
-  border: 2px solid red;
+  //border: 2px solid red;
 }
-
 
 body {
   background: $secondary-background;
@@ -12,11 +11,13 @@ body {
 }
 
 header, h1 {
+  color: $third-color;
   font-size: 2em;
 }
 
 button {
-  border: 2px solid black;
+  color: $secondary-color;
+  border: 5px solid $third-color;
   border-radius: 5px;
   background: none;
   cursor: pointer;
@@ -30,6 +31,10 @@ main {
 }
 
 .login {
+  background-color: $primary-color;
+  color: $secondary-color;
+  padding: $padding-space;
+  margin: $margin-space;
   grid-column: 2;
   grid-row: 3;
 }
@@ -43,21 +48,41 @@ main {
   grid-row: span 5;
   display: grid;
   grid-gap: 1em;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 30% 35% 35%;
 }
 
 .customer-dashboard {
+  background-color: $third-color;
   grid-column: 1;
   grid-row: 1;
 }
 
 .customer-bookings-box {
+  background-color: $secondary-color;
   display: grid;
   grid-gap: 1em;
   grid-column: span 2;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: minmax(10%, auto);
+}
+
+.customer-search {
+  background-color: cream;
+  display: grid;
+  grid-gap: 1em;
+  grid-column: span 5;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+}
+
+.date-selection {
+  grid-column: span 5;
+  grid-row: span 5;
+}
+
+.date-results {
+  grid-column: span 5;
+  grid-row: span 5;
 }
 
 .hidden {

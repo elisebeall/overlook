@@ -19,6 +19,9 @@ export const juniorSuite = document.getElementById('juniorSuite');
 export const suite = document.getElementById('suite');
 export const resSuite = document.getElementById('resSuite');
 export const searchResults = document.getElementById('searchResults');
+export const goBack1 = document.getElementById('goBack1');
+export const goBack2 = document.getElementById('goBack2');
+export const confirmation = document.getElementById('confirmation');
 
 export const domUpdates = {
 
@@ -56,7 +59,7 @@ export const domUpdates = {
         let hasBidet;
         room.bidet ? hasBidet = 'has' : hasBidet = 'does not have';
         //add roomnumber as the id for each room
-        searchResults.innerHTML += `<article class="room-display" id="${room.number}">Room #${room.number} is a ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s) and it ${hasBidet} a bidet. It costs $${room.costPerNight}.</article>`;
+        searchResults.innerHTML += `<article class="room-display" id="${room.number}"><button class="book-room" id="bookRoom">Book Room</button>Room #${room.number} is a ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s) and it ${hasBidet} a bidet. It costs $${room.costPerNight}.</article>`;
       }
     });
   },
@@ -88,14 +91,17 @@ export const domUpdates = {
   },
 
   displayBookingConfirmation() {
-    hide(searchResults);
-    show(checkout);
-    checkout.innerText = '';
-    checkout.innerText += 'This is where the Overlook takes your money.';
+    this.hide(dateResults);
+    this.show(confirmation);
+    confirmation.innerHTML = '';
+    confirmation.innerHTML += 'This is where the Overlook takes your money.<br><button class="search-rooms" id="goBack1">Go Back</button>';
   },
 
   catchError(error) {
-    //something has gone wrong
+    this.hide(dateResults);
+    this.show(confirmation);
+    confirmation.innerHTML = '';
+    confirmation.innerHTML = `${error} Sincerest apologies, but something has gone wrong.  Please try again.<br><button class="search-rooms" id="goBack2">Go Back</button>`;
   },
 
   show(element) {
