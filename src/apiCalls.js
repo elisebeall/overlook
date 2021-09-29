@@ -1,4 +1,5 @@
 import { domUpdates } from './domUpdates';
+import { confirmBooking } from './scripts.js';
 
 const endpoints = {
   rooms: 'http://localhost:3001/api/v1/rooms',
@@ -25,12 +26,12 @@ export const fetchCustomers = () => {
     .catch(error => domUpdates.catchError(error))
 };
 
-export const fetchCustomer = (id) => {
-  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-    .then(manageLogInError)
-    .then(data => instantiateCustomer(data))
-    .catch(error => domUpdates.catchError(error))
-};
+// export const fetchCustomer = (id) => {
+//   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
+//     .then(manageLogInError)
+//     .then(data => instantiateCustomer(data))
+//     .catch(error => domUpdates.catchError(error))
+// };
 
 export const fetchHotelData = () => {
   Promise.all([fetchRooms(), fetchCustomers(), fetchBookings()])
@@ -39,7 +40,7 @@ export const fetchHotelData = () => {
 };
 
 export const bookRoom = (customer, date, room) => {
-  return fetch(endpoints.bookings, {
+  fetch(endpoints.bookings, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -50,23 +51,23 @@ export const bookRoom = (customer, date, room) => {
       roomNumber: room
     })
   })
-    .then(managePostError)
-    .then(() => domUpdates.confirmBooking())
-    .then(() => fetchHotelData())
+    //.then(managePostError)
+    .then(response => confirmBooking())
+    //.then(customer => fetchHotelData())
     .catch(error => domUpdates.catchError(error))
-};
-
-const managePostError = () => {
-  if (!response.ok) {
-    throw new Error (`Zoinks. Something\'s not right here. ${response.status} ${response.status.text}`);
-  } else {
-    return response.json();
-  };
 };
 
 const manageLogInError = () => {
   if (!response.ok) {
     throw new Error (`Apologies, that user doesn\'t appear to exist. Yet... ${response.status} ${response.status.text}`);
+  } else {
+    return response.json();
+  };
+};
+
+const managePostError = () => {
+  if (!response.ok) {
+    throw new Error (`Zoinks. Something\'s not right here. ${response.status} ${response.status.text}`);
   } else {
     return response.json();
   };

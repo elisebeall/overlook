@@ -4,7 +4,6 @@ class Hotel {
     this.rooms = rooms;
     this.bookings = bookings;
     this.customerBookings = [];
-    this.roomDetails = [];
   };
 
   getCustomerProfile(userID) {
@@ -21,39 +20,37 @@ class Hotel {
     return this.customerBookings;
   };
 
-  calculateSpending(customer) {
-    let total = this.customerBookings.reduce((acc, booking) => {
+  calculateSpendings(custBookings) {
+    let totalSpent = 0;
+    custBookings.forEach(booking => {
       this.rooms.forEach(room => {
         if (booking.roomNumber === room.number) {
-          acc += room.costPerNight;
-        };
+          totalSpent += room.costPerNight;
+        }
       });
-      return acc;
-    }, 0);
-    return total;
+    });
+
+    return totalSpent.toFixed(2);
   };
 
   searchBookings(date) {
-    let bookedRoomsByNumber = this.bookings.filter(booking => booking)
-    let availableRooms = this.bookings.filter(booking => booking.date !== date);
+    let bookedRoomNumbers = this.bookings.reduce((acc, booking) => {
+      if (booking.date === date) {
+        acc.push(booking.roomNumber);
+      };
+      return acc;
+    }, []);
 
+    let freeRoomsforDate = this.rooms.reduce((acc, room) => {
+      if (!bookedRoomNumbers.includes(room.number)) {
+        acc.push(room);
+      };
+      return acc;
+    }, []);
 
-    console.log('availableRooms',availableRooms)
-    //return this.roomDetails;
-  }
-
-  postNewBooking() {
-
+    return freeRoomsforDate;
   };
+
 };
 
 export default Hotel;
-
-
-//Once the user logs in, an instance of the user class will be created using the
-//id from the login credentials.
-//The userID will then allow a new instance of the booking class.
-//An instance of the dashboard will be the last thing created, and it will take
-//the customer, rooms, and bookings as parameters.
-//The user will have an ID which corresponds to the userID in the booking class.
-//

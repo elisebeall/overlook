@@ -25,12 +25,13 @@
     <section class="dashboard hidden" id="dashboard">
       <article class="customer-dashboard">
         <h2 class="customer-greeting" id="customerGreeting">Welcome</h2>
-        <h3 class="total-spendings" id="totalSpendings"></h3>
+        <h3 class="total-spendings" id="totalSpendings">$</h3>
         <h3 class="thank-you-message">Thank you for your continued support.</h3>
+        <button class="logout" id="logout">Logout</button>
         <button class="room-search" id="roomSearch">New Booking</button>
       </article>
-      <article class="customer-bookings" id="customerBookings">
-
+      <article class="customer-bookings-box" id="customerBookings">
+        <!-- All of the customer's bookings populate here -->
       </article>
     </section>
     <section class="customer-search hidden" id="customerSearch">
@@ -96,17 +97,17 @@
           </select>
           <button type="submit" name="submit-search" class="submit-search" id="submitSearch" value="search">Search Available Rooms</button>
         </form>
-        <button class="customer-greeting hidden" id="bookRoom">Book Room</button>
-        <button class="customer-greeting hidden" id="checkout">Money Please</button>
       </article>
-      <article class="date-results" id="dateResults">
-        <h2 class="customer-greeting">Here are the available rooms for <em id="dateSearched"></em></h2>
-        <button class="filter-results" id="singleRoom">Single Room</button>
-        <button class="filter-results" id="juniorSuite">Junior Suite</button>
-        <button class="filter-results" id="suite">Suite</button>
-        <button class="filter-results" id="resSuite">Residential Suite</button>
-        <div class="grid-container" id="gridContainer">
-        </div>
+      <article class="date-results hidden" id="dateResults">
+        <h2 class="customer-greeting">Here are the available <em id="filterType">rooms</em> for <em id="dateSearched"></em></h2>
+        <button class="filter-results single" id="singleRoom">Single Room</button>
+        <button class="filter-results junior" id="juniorSuite">Junior Suite</button>
+        <button class="filter-results suite" id="suite">Suite</button>
+        <button class="filter-results residential" id="resSuite">Residential Suite</button>
+        <article class="search-results-box" id="searchResults">
+          <!-- All of the customer's search results populate here -->
+        </article>
+        <button class="customer-greeting hidden" id="checkout">Money Please</button>
       </article>
     </section>
   </main>

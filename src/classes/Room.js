@@ -1,4 +1,4 @@
-import { roomsData } from '../data/rooms.js';
+//import { roomsData } from '../data/rooms.js';
 
 class Room {
   constructor(roomsData) {

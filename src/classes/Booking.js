@@ -1,4 +1,4 @@
-import { bookingsData } from '../data/bookings.js';
+//import { bookingsData } from '../data/bookings.js';
 
 class Booking {
   constructor(bookingsData) {
@@ -7,10 +7,6 @@ class Booking {
     this.date = bookingsData.date;
     this.roomNumber = bookingsData.roomNumber;
     this.roomServiceCharges = [];
-  };
-
-  createNewBooking(id, userID, date, roomNumber) {
-
   };
 };
 

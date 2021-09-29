@@ -1,4 +1,4 @@
-import { customersData } from '../data/customers.js';
+//import { customersData } from '../data/customers.js';
 
 class Customer {
   constructor(customersData) {
